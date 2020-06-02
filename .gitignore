@@ -237,3 +237,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# Indexing Files
+.DS_Store
+thumbs.db
