@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block body %}
+{{ variable }}
+<ul>
+{% for el in my_list %}
+    <li>{{ el }}</li>
+{% endfor %}
+</ul>
+{{ page }}
+{% endblock %}

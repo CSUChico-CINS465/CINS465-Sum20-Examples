@@ -12,3 +12,12 @@
 * gitignore files
 * Python3 intro
 * Docker intro
+
+## Day 3
+
+* More Docker
+* Installing Django
+* Requirements.txt
+* Overview of Django Files
+* Django Hello World
+* Django Templates
