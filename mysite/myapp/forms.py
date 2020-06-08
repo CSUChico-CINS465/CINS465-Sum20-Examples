@@ -30,9 +30,10 @@ class SuggestionForm(forms.Form):
         # validators=[validate_slug, must_be_caps, must_be_bob],
     )
 
-    def save(self):
+    def save(self, request):
         suggestion_instance = models.SuggestionModel(
                 suggestion = self.cleaned_data["suggestion"],
+                author = request.user,
             )
         suggestion_instance.save()
 

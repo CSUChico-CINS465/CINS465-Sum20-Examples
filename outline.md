@@ -26,4 +26,14 @@
 
 * Models
 * Static Files
-* Forms (maybe)
+* Forms 
+* Registration
+
+## Day 5
+
+* Finishing Authentication
+* Using Authentication
+* Advanced Models
+* REST
+* JS example
+

@@ -1,22 +1,44 @@
 {% extends "base.html" %}
+{% load static %}
+
 
 {% block title %}{{ title }}{% endblock %}
 
 {% block body %}
+  <div id="app-4">
+    <ul>
+      <li v-for="sugg in suggestions">
+        {% verbatim %}
+        {{ sugg.suggestion }}
+        {% endverbatim %}
+      </li>
+    </ul>
+  </div>
+
+
 <ul>
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
             {% for el in my_list %}
                 <div class="large-4 medium-6 small-12 cell">
-                    <li>{{ el }}</li>
+                    <li>{{ el.suggestion }} - {{ el.author.username }} </li>
                 </div>
             {% endfor %}
         </div>
     </div>
 </ul>
+{% if user.is_authenticated %}
 <form action="/" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" class="button" value="Add Suggestion"/>
 </form>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="{% static "js/myvue.js" %}"></script>
 {% endblock %}
