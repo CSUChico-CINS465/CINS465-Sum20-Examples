@@ -1,11 +1,22 @@
 {% extends "base.html" %}
 
+{% block title %}{{ title }}{% endblock %}
+
 {% block body %}
-{{ variable }}
 <ul>
-{% for el in my_list %}
-    <li>{{ el }}</li>
-{% endfor %}
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+            {% for el in my_list %}
+                <div class="large-4 medium-6 small-12 cell">
+                    <li>{{ el }}</li>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 </ul>
-{{ page }}
+<form action="/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" class="button" value="Add Suggestion"/>
+</form>
 {% endblock %}

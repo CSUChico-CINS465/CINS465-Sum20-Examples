@@ -21,3 +21,9 @@
 * Overview of Django Files
 * Django Hello World
 * Django Templates
+
+## Day 4
+
+* Models
+* Static Files
+* Forms (maybe)
