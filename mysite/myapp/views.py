@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
+from datetime import datetime, timezone
 
 
 from . import models
@@ -60,10 +61,20 @@ def get_suggestions(request):
     suggestion_list = {}
     suggestion_list["suggestions"] = []
     for sugg in suggestion_objects:
+        comment_objects = models.CommentModel.objects.filter(suggestion=sugg)
         temp_sugg = {}
         temp_sugg["id"] = sugg.id
         temp_sugg["suggestion"] = sugg.suggestion
         temp_sugg["author"] = sugg.author.username
+        temp_sugg["date"] = sugg.published_on.strftime("%Y-%m-%d %H:%M:%S")
+        temp_sugg["comments"] = []
+        for comm in comment_objects:
+            temp_comm = {}
+            temp_comm["id"] = comm.id
+            temp_comm["comment"] = comm.comment
+            temp_comm["author"] = comm.author.username
+            temp_comm["date"] = (datetime.now(timezone.utc) - comm.published_on)
+            temp_sugg["comments"].append(temp_comm)
         suggestion_list["suggestions"].append(temp_sugg)
     # print(suggestion_list)
     return JsonResponse(suggestion_list)

@@ -37,3 +37,15 @@
 * REST
 * JS example
 
+## Day 6
+
+* Style
+* Comments
+* Project Q/A
+
+## Day 7
+
+* CI/CD
+* Simple Testing
+* Linter
+

@@ -1,7 +1,9 @@
 var app4 = new Vue({
     el: '#app-4',
     data: {
-        suggestions: []
+        suggestions: [],
+        seen:true,
+        unseen:false
     },
     //Adapted from https://stackoverflow.com/questions/36572540/vue-js-auto-reload-refresh-data-with-timer
     created: function(){
@@ -15,8 +17,21 @@ var app4 = new Vue({
             //     console.log(suggest_list);
             // }.bind(this));
             axios.get('/suggestions/')
+            //   .then(function (response) {
+            //     // handle success
+            //     this.suggestions = response.data.suggestions;
+            //     console.log(this.suggestions);
+            //     this.seen=false;
+            //     this.unseen=true;
+            //   })
+            //   .catch(function (error) {
+            //     // handle error
+            //     console.log(error);
+            //   })
             .then(response => (this.suggestions = response.data.suggestions))
-            // console.log(this.suggestions)
+            console.log(this.suggestions)
+            // this.seen=false
+            // this.unseen=true
         },
         cancelAutoUpdate: function() { clearInterval(this.timer) }
     },

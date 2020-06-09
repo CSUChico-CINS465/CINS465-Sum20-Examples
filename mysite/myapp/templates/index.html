@@ -6,27 +6,46 @@
 
 {% block body %}
   <div id="app-4">
+    
     <ul>
-      <li v-for="sugg in suggestions">
-        {% verbatim %}
-        {{ sugg.suggestion }}
-        {% endverbatim %}
-      </li>
+        <div class="grid-container">
+            <div class="grid-x grid-padding-x">
+                <div class="large-12 medium-12 small-12 cell" v-for="sugg in suggestions">
+                    <li >
+                        {% verbatim %}
+                        {{ sugg.suggestion }} - {{ sugg.author }} published on {{ sugg.date }}
+                        {% endverbatim %}
+                        <ul>
+                            <li v-for="comm in sugg.comments">
+                                {% verbatim %}
+                                    {{ comm.comment }} - {{ comm.author }} published on {{ comm.date }}
+                                {% endverbatim %}
+                            </li>
+                        </ul>
+                    </li>
+                </div>
+            </div>
+        </div>
     </ul>
+    <!-- <ul>
+        <div class="grid-container">
+            <div class="grid-x grid-padding-x">
+                {% for el in my_list %}
+                    
+                    <div class="large-4 medium-6 small-12 cell">    
+                    <li>
+                        {{ el.suggestion }} - {{ el.author.username }}
+                    </li>
+                    </div> 
+                {% endfor %}
+            </div>
+        </div>
+    </ul> -->
+   
   </div>
 
 
-<ul>
-    <div class="grid-container">
-        <div class="grid-x grid-padding-x">
-            {% for el in my_list %}
-                <div class="large-4 medium-6 small-12 cell">
-                    <li>{{ el.suggestion }} - {{ el.author.username }} </li>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-</ul>
+<!--  -->
 {% if user.is_authenticated %}
 <form action="/" method="post">
     {% csrf_token %}
