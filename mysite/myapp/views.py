@@ -1,31 +1,27 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse, JsonResponse
+from datetime import datetime, timezone
+from django.shortcuts import redirect, render
+from django.http import JsonResponse
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-
-from datetime import datetime, timezone
 
 
 from . import models
 from . import forms
 
 # Create your views here.
-def index(request,page=0):
+def index(request):
     if request.method == "POST":
         form_instance = forms.SuggestionForm(request.POST)
         if request.user.is_authenticated:
             if form_instance.is_valid():
                 form_instance.save(request)
                 form_instance = forms.SuggestionForm()
-        
     else:
         form_instance = forms.SuggestionForm()
-    # numperpage=5
-    # li = models.SuggestionModel.objects.all()[page*numperpage:page*numperpage+numperpage]
-    li = models.SuggestionModel.objects.all()
+    suggestion_list = models.SuggestionModel.objects.all()
     context = {
         "variable":"Suggestion List",
-        "my_list":li,
+        "my_list":suggestion_list,
         "title": "My Title",
         "form":form_instance,
     }

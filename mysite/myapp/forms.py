@@ -1,5 +1,5 @@
 from django import forms
-from django.core.validators import validate_slug
+# from django.core.validators import validate_slug
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -32,8 +32,8 @@ class SuggestionForm(forms.Form):
 
     def save(self, request):
         suggestion_instance = models.SuggestionModel(
-                suggestion = self.cleaned_data["suggestion"],
-                author = request.user,
+            suggestion=self.cleaned_data["suggestion"],
+            author=request.user,
             )
         suggestion_instance.save()
 
@@ -43,12 +43,12 @@ class RegistrationForm(UserCreationForm):
         required=True,
         validators=[must_be_unique]
         )
-    
+
     class Meta:
         model = User
         fields = ("username", "email",
                   "password1", "password2")
-    
+
     def save(self, commit=True):
         user = super(RegistrationForm, self).save(commit=False)
         user.email = self.cleaned_data["email"]
