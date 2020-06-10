@@ -6,6 +6,21 @@ services:
     build: .
     volumes:
        - .:/code
-    ports:
-       - 8000:8000
+    user: "1001:1002"
+    links:
+       - redis:redis
+    expose:
+       - 8000
     command: python /code/mysite/manage.py runserver 0.0.0.0:8000
+
+#   redis:
+#     image: redis:latest
+#     expose:
+#       - 6379
+
+  nginx:
+    build: ./nginx/
+    ports:
+      - 80:80
+    links:
+      - web:web

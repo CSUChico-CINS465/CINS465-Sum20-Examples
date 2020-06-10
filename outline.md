@@ -46,6 +46,7 @@
 ## Day 7
 
 * GCP Hosting
+* VS Code Remote Edit
 * CI/CD
 * Simple Testing
 * Linter
