@@ -7,8 +7,8 @@ services:
     volumes:
        - .:/code
     user: "1001:1002"
-    links:
-       - redis:redis
+    # links:
+    #    - redis:redis
     expose:
        - 8000
     command: python /code/mysite/manage.py runserver 0.0.0.0:8000
