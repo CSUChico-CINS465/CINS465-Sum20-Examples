@@ -45,6 +45,7 @@
 
 ## Day 7
 
+* GCP Hosting
 * CI/CD
 * Simple Testing
 * Linter
