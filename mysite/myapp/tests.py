@@ -16,8 +16,8 @@ class SuggestionTestCase(TestCase):
     def test_suggestion_to_string(self):
         lion = models.SuggestionModel.objects.get(suggestion="lion")
         cat = models.SuggestionModel.objects.get(suggestion="cat")
-        self.assertEqual(str(lion),'lion - john')
-        self.assertEqual(str(cat),'cat - john')
+        self.assertEqual(str(lion), 'lion - john')
+        self.assertEqual(str(cat), 'cat - john')
 
     def test_suggestion_author(self):
         lion = models.SuggestionModel.objects.get(suggestion="lion")
