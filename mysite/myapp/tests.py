@@ -29,4 +29,3 @@ class SuggestionTestCase(TestCase):
         cat = models.SuggestionModel.objects.get(suggestion="cat")
         self.assertEqual(lion.suggestion, "lion")
         self.assertEqual(cat.suggestion, "cat")
-    
