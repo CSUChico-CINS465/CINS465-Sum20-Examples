@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 
 from . import models
+from . import views
 
 
 # Create your tests here.
@@ -11,7 +12,7 @@ class SuggestionTestCase(TestCase):
         user.save()
         models.SuggestionModel.objects.create(suggestion="lion", author=user)
         models.SuggestionModel.objects.create(suggestion="cat", author=user)
-    
+
     def test_suggestion_to_string(self):
         lion = models.SuggestionModel.objects.get(suggestion="lion")
         cat = models.SuggestionModel.objects.get(suggestion="cat")
