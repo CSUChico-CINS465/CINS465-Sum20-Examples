@@ -4,7 +4,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 
-from . import models
+from . import models 
+
 
 def must_be_caps(value):
     if not value.isupper():

@@ -48,6 +48,11 @@
 * GCP Hosting
 * VS Code Remote Edit
 * CI/CD
-* Simple Testing
 * Linter
+
+## Day 8
+
+* Simple Testing
+* Finish CI/CD
+* Comment Form
 
