@@ -3,30 +3,42 @@
 
 
 {% block title %}{{ title }}{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static "css/app.css" %}">
+{% endblock %}
 
 {% block body %}
   <div id="app-4">
     
-    <ul>
         <div class="grid-container">
             <div class="grid-x grid-padding-x">
-                <div class="large-12 medium-12 small-12 cell" v-for="sugg in suggestions">
-                    <li >
+                <div class="card-info primary large-12 medium-12 small-12 cell" v-for="sugg in suggestions">
+                    <div class="card-info-content">
                         {% verbatim %}
-                        {{ sugg.suggestion }} - {{ sugg.author }} published on {{ sugg.date }}
+                        <h3 class="lead">{{ sugg.suggestion }}</h3>
+                        authored by {{ sugg.author }} 
+                        published on {{ sugg.date }} 
                         {% endverbatim %}
-                        <ul>
-                            <li v-for="comm in sugg.comments">
-                                {% verbatim %}
-                                    {{ comm.comment }} - {{ comm.author }} published on {{ comm.date }}
-                                {% endverbatim %}
-                            </li>
-                        </ul>
-                    </li>
+                        <div class="grid-x">
+                            <div class="large-11 medium-11 small-12 large-offset-1 medium-offset-1 cell">
+                                <div class="card-info primary" v-for="comm in sugg.comments">
+                                    <div class="card-info-content">
+                                    {% verbatim %}
+                                    {{ comm.comment }} - {{ comm.author }} - {{ comm.date }}
+                                    {% endverbatim %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="large-11 medium-11 small-12 large-offset-1 medium-offset-1 cell">
+                            {% if user.is_authenticated %}
+                            <a :href="'/comment/' + sugg.id + '/'" class="button">Comment</a>
+                            {% endif %}
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>
-    </ul>
+    </div>
     <!-- <ul>
         <div class="grid-container">
             <div class="grid-x grid-padding-x">
@@ -42,18 +54,55 @@
         </div>
     </ul> -->
    
-  </div>
+</div>
+<div class="grid-container">
+    <div class="grid-x grid-padding-x">
+      <div class="large-3 medium-3 small-12 large-offset-1 medium-offset-1 cell"></div>
+        <!-- User card example #1 -->
+        <div class="card-user-container">
 
+            <!--card's image-->
+            <div class="card-user-avatar">
+            <img src="https://www.bryancdixon.com/static/profile.jpg" alt="" class="user-image">
+            </div>
+        
+            <!--user info name, bio and location-->
+            <div class="card-user-bio">
+            <h4>{{ request.user.username }}</h4>
+            <p>UX/UI ,Front-end developer, Foundation interested. </p>
+            <span class="location"><span class="location-icon fa fa-map-marker"></span><span class="location-text">{{ request.user.first_name }} {{ request.user.last_name }}</span></span>
+            </div>
+        
+            <!--card's socail icons-->
+            <div class="card-user-social">
+            <ul class="menu">
+                <li class="fa fa-twitter"></li>
+                <li class="fa fa-dribbble"></li>
+                <li class="fa fa-instagram"></li>
+                <li class="fa fa-github"></li>
+            </ul>
+            </div>
+        
+            <!--card's follow button-->
+            <div class="card-user-button">
+            <a href="#" class="hollow button">FOLLOW</a>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
+  
+  
 
 <!--  -->
-{% if user.is_authenticated %}
+<!-- {% if user.is_authenticated %}
 <form action="/" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" class="button" value="Add Suggestion"/>
 </form>
 {% endif %}
-{% endblock %}
+{% endblock %} -->
 
 {% block scripts %}
 <!-- development version, includes helpful console warnings -->

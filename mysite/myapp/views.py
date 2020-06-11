@@ -52,6 +52,45 @@ def register(request):
     }
     return render(request, "registration/register.html", context=context)
 
+def add_comment(request, sugg_id):
+    if not request.user.is_authenticated:
+        return redirect("/")
+    if request.method == "POST":
+        if request.user.is_authenticated:
+            form = forms.CommentForm(request.POST)
+            if form.is_valid():
+                form.save(request, sugg_id)
+                return redirect("/")
+        else:
+            return redirect("/")
+    else:
+        form = forms.CommentForm()
+    context = {
+        "title":"Comment",
+        "sugg_id": sugg_id,
+        "form":form
+    }
+    return render(request, "comment.html", context=context)
+
+def add_suggestion(request):
+    if not request.user.is_authenticated:
+        return redirect("/")
+    if request.method == "POST":
+        if request.user.is_authenticated:
+            form = forms.SuggestionForm(request.POST)
+            if form.is_valid():
+                form.save(request)
+                return redirect("/")
+        else:
+            return redirect("/")
+    else:
+        form = forms.SuggestionForm()
+    context = {
+        "title":"Suggestion",
+        "form":form
+    }
+    return render(request, "suggestion.html", context=context)
+
 def get_suggestions(request):
     suggestion_objects = models.SuggestionModel.objects.all()
     suggestion_list = {}

@@ -29,6 +29,10 @@
         </div>
         <div class="top-bar-right">
           <ul class="menu">
+            {% if user.is_authenticated %}
+            <li><a href="/suggestion/">Add a Suggestion</a></li>
+            <li><a style="pointer-events: none; cursor: default;">Welcome {{ request.user.username }}</a></li>
+            {% endif %}
             <!-- <li><input type="search" placeholder="Search"></li>
             <li><button type="button" class="button">Search</button></li> -->
           </ul>
