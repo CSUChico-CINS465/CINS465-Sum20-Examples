@@ -77,7 +77,7 @@ def add_suggestion(request):
         return redirect("/")
     if request.method == "POST":
         if request.user.is_authenticated:
-            form = forms.SuggestionForm(request.POST)
+            form = forms.SuggestionForm(request.POST, request.FILES)
             if form.is_valid():
                 form.save(request)
                 return redirect("/")
@@ -92,17 +92,29 @@ def add_suggestion(request):
     return render(request, "suggestion.html", context=context)
 
 def get_suggestions(request):
-    suggestion_objects = models.SuggestionModel.objects.all()
+    suggestion_objects = models.SuggestionModel.objects.all().order_by(
+        '-published_on'
+    )
     suggestion_list = {}
     suggestion_list["suggestions"] = []
     for sugg in suggestion_objects:
-        comment_objects = models.CommentModel.objects.filter(suggestion=sugg)
+        comment_objects = models.CommentModel.objects.filter(
+            suggestion=sugg
+        ).order_by(
+            '-published_on'
+        )
         temp_sugg = {}
         temp_sugg["id"] = sugg.id
         temp_sugg["suggestion"] = sugg.suggestion
         temp_sugg["author"] = sugg.author.username
         temp_sugg["date"] = sugg.published_on.strftime("%Y-%m-%d %H:%M:%S")
         temp_sugg["comments"] = []
+        try:
+            temp_sugg["image"] = sugg.image.url
+            temp_sugg["image_desc"] = sugg.image_description
+        except ValueError:
+            temp_sugg["image"] = ""
+            temp_sugg["image_desc"] = "" 
         for comm in comment_objects:
             temp_comm = {}
             temp_comm["id"] = comm.id

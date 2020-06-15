@@ -56,3 +56,17 @@
 * Finish CI/CD
 * Comment Form
 
+## Day 9
+
+* Media
+
+## Day 10
+
+* Begin Optional Cloud Tool Intros
+* Cloud SQL
+* SSL
+
+## Day 11
+
+* Cloud APIs
+
