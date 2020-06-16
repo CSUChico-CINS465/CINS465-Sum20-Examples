@@ -6,6 +6,9 @@ __pycache__/
 #Media
 mysite/media/
 
+#ssl certs
+nginx/ssl/
+
 # C extensions
 *.so
 
