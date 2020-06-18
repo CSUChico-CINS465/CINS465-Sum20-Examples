@@ -4,11 +4,13 @@ version: '3'
 services:
   web:
     build: .
-    volumes:
-       - .:/code
+    # volumes:
+    #    - .:/code
     user: "1001:1002"
     # links:
     #    - redis:redis
+    environment:
+        - GOOGLE_APPLICATION_CREDENTIALS=/code/mysite/CINS465-Primary-37758df7c166.json
     expose:
        - 8000
     command: python /code/mysite/manage.py runserver 0.0.0.0:8000
@@ -23,7 +25,7 @@ services:
     ports:
       - 80:80
       - 443:443
-    volumes:
-      - ./mysite/myapp/static:/static
+    # volumes:
+    #   - ./mysite/myapp/static:/static
     links:
       - web:web

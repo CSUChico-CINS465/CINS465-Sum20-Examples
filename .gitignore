@@ -6,6 +6,9 @@ __pycache__/
 #Media
 mysite/media/
 
+#Google Cloud Credentials
+mysite/CINS465-Primary-37758df7c166.json
+
 #ssl certs
 nginx/ssl/
 

@@ -70,3 +70,7 @@
 
 * Cloud APIs
 
+## Day 12
+
+* Cloud Storage
+
