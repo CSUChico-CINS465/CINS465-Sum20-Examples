@@ -4,8 +4,8 @@ version: '3'
 services:
   web:
     build: .
-    # volumes:
-    #    - .:/code
+    volumes:
+       - .:/code
     user: "1001:1002"
     # links:
     #    - redis:redis
@@ -25,7 +25,12 @@ services:
     ports:
       - 80:80
       - 443:443
-    # volumes:
-    #   - ./mysite/myapp/static:/static
+    volumes:
+      - ./mysite/myapp/static:/static
     links:
       - web:web
+  
+  rust_wasm:
+    build: ./wasm/
+    volumes:
+      - ./wasm/:/code/
