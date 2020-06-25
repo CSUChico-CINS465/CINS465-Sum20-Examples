@@ -21,8 +21,12 @@
                 {% else %}
                     <a href="/login/">Login</a>
                 {% endif %}
-              
             </li>
+            {% if not user.is_authenticated %}
+            <li>
+                <a href="{% url "social:begin" "google-oauth2" %}"><img height="20" src="{% static "googlesignin.png" %}" alt="Sign in with Google" /></a>
+            </li>
+            {% endif %}
             <!-- <li><a href="#">Two</a></li>
             <li><a href="#">Three</a></li> -->
           </ul>
