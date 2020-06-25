@@ -83,3 +83,7 @@
 
 * WASM
 
+# Day 16
+
+* Google Auth
+
